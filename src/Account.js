@@ -17,20 +17,24 @@ const Account = ({ session }) => {
          setLoading(true)
          const { user } = session
 
-         let { data, error, status } = await supabase
-            .from('profiles')
-            .select(`username, website, avatar_url`)
-            .eq('id', user.id)
-            .single()
+         // let { data, error, status } = await supabase
+         //    .from('profiles')
+         //    .select(`username, website, avatar_url`)
+         //    .eq('id', user.id)
+         //    .single()
 
-         if (error && status !== 406) {
-            throw error
-         }
+         const { data } = await supabase.auth.getUser()
+         console.log('data from getprofile', data)
+         // if (error && status !== 406) {
+         //    throw error
+         // }
 
          if (data) {
-            setUsername(data.username)
-            setWebsite(data.website)
-            setAvatarUrl(data.avatar_url)
+            const {username, website, avatar_url} = data.user.user_metadata
+            setUsername(username)
+            setWebsite(website)
+            setAvatarUrl(avatar_url)
+            console.log('getProfile data =', data)
          }
       } catch (error) {
          alert(error.message)
@@ -52,8 +56,15 @@ const Account = ({ session }) => {
             updated_at: new Date(),
          }
 
-         let { error } = await supabase.from('profiles').upsert(updates)
-
+         // let { error } = await supabase.from('profiles').upsert(updates)
+         const { data, error } = await supabase.auth.updateUser({
+            data: {
+               username,
+               website,
+               avatar_url,
+            }
+         })
+         console.log('data returned', data)
          if (error) {
             throw error
          }
