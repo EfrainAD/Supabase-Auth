@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from './supabaseClient'
 
-export default function Avatar({ url, size, onUpload }) {
+export default function Avatar({ url, size, onUpload, userId }) {
    const [avatarUrl, setAvatarUrl] = useState(null)
    const [uploading, setUploading] = useState(false)
 
@@ -31,11 +31,10 @@ export default function Avatar({ url, size, onUpload }) {
          }
 
          const file = event.target.files[0]
-         const fileExt = file.name.split('.').pop()
-         const fileName = `${Math.random()}.${fileExt}`
+         const fileName = `${userId}`
          const filePath = `${fileName}`
 
-         let { error: uploadError } = await supabase.storage.from('avatars').upload(filePath, file)
+         let { error: uploadError } = await supabase.storage.from('avatars').upload(filePath, file, {upsert: true})
 
          if (uploadError) {
             throw uploadError

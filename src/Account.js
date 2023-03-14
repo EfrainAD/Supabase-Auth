@@ -74,6 +74,7 @@ const Account = ({ session }) => {
                <Avatar
                   url={avatar_url}
                   size={150}
+                  userId={session.user.id}
                   onUpload={(url) => {
                      setAvatarUrl(url)
                      updateProfile({ username, website, avatar_url: url })
