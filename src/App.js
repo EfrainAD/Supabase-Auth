@@ -2,8 +2,8 @@ import './index.css'
 import { useState, useEffect } from 'react'
 import { supabase } from './supabaseClient'
 
-import Auth from './Auth'
-import Account from './Account'
+import Auth from './components/Auth'
+import Account from './components/forum/Account'
 
 export default function App() {
    const [session, setSession] = useState(null)
