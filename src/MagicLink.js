@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { supabase } from './supabaseClient'
+import TextField from './TextField'
 
-export default function MagicLink() {
+const MagicLink = () => {
      const [loading, setLoading] = useState(false)
      const [email, setEmail] = useState('')
 
@@ -31,21 +32,23 @@ export default function MagicLink() {
                     'Sending magic link...'
                ) : (
                     <form onSubmit={handleLogin}>
-                    <label htmlFor="email">Email</label>
-                    <input
-                         id="email"
-                         className="inputField"
-                         type="email"
-                         placeholder="Your email"
-                         value={email}
-                         onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <button className="button block" aria-live="polite">
-                         Send magic link
-                    </button>
+                         <TextField
+                              lable='Email'
+                              id="magic-link-email"
+                              className="inputField"
+                              type="email"
+                              placeholder="Your email"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                         />
+                         <button className="button block" aria-live="polite">
+                              Send magic link
+                         </button>
                     </form>
           )}
           </div>
      </div>
      )
 }
+
+export default MagicLink
