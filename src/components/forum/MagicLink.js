@@ -26,26 +26,28 @@ const MagicLink = () => {
      return (
      <div className="row flex-center flex">
           <div className="col-6 form-widget" aria-live="polite">
-          <h1 className="header">Supabase + React</h1>
-          <p className="description">Sign in via magic link with your email below</p>
-          {loading ? (
-                    'Sending magic link...'
-               ) : (
-                    <form onSubmit={handleLogin}>
-                         <TextField
-                              lable='Email'
-                              id="magic-link-email"
-                              className="inputField"
-                              type="email"
-                              placeholder="Your email"
-                              value={email}
-                              onChange={(e) => setEmail(e.target.value)}
-                         />
-                         <button className="button block" aria-live="polite">
-                              Send magic link
-                         </button>
-                    </form>
-          )}
+               <h1 className="header">Supabase + React</h1>
+               <p className="description">Sign in via magic link with your email below</p>
+               {loading ? 
+                    (
+                         'Sending magic link...'
+                    ) : (
+                         <form onSubmit={handleLogin}>
+                              <TextField
+                                   lable='Email'
+                                   id="magic-link-email"
+                                   className="inputField"
+                                   type="email"
+                                   placeholder="Your email"
+                                   value={email}
+                                   onChange={(e) => setEmail(e.target.value)}
+                              />
+                              <button className="button block" aria-live="polite">
+                                   Send Magic Link
+                              </button>
+                         </form>
+                    )
+               }
           </div>
      </div>
      )
