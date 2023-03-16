@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { supabase } from '../../supabaseClient'
+import { supabase } from '../../services/supabase/supabaseClient'
 import TextField from './TextField'
 
 const MagicLink = () => {

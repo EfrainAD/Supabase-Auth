@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import Avatar from './Avatar'
-import { supabase } from '../../supabaseClient'
+import { supabase } from '../../services/supabase/supabaseClient'
 
 const Account = ({ session }) => {
    const [loading, setLoading] = useState(true)
