@@ -7,13 +7,22 @@ export const signInWithGoogle = async () => {
    })
    
    if (error) throw error
- }
+}
  
 //  Facebook Sign In
- export const signInWithFacebook = async () => {
+export const signInWithFacebook = async () => {
    const { error } = await supabase.auth.signInWithOAuth({
      provider: 'facebook',
    })
 
    if (error) throw error
- }
+}
+
+//  LinkedIn Sign In
+export const signInWithLinkedIn = async () => {
+   const { error } = await supabase.auth.signInWithOAuth({
+     provider: 'linkedin',
+   })
+   
+   if (error) throw error
+}
